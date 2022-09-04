@@ -115,11 +115,11 @@ public class Main {
 
         System.out.println("---------------------------------------------------------");
 
-        Person person1 = new Person();
+        Person person1 = new Person("Cernescu", "Stefan");
         person1.setLastName("Cernescu");
         person1.setFirstName("Stefan");
 
-        Person person2 = new Person();
+        Person person2 = new Person("Alex", "Ene");
         person2.setFirstName("Alex");
         person2.setLastName("Ene");
 
@@ -156,11 +156,11 @@ public class Main {
         }
 
         String[] array = new String[5];
-        List<String> list = new LinkedList<>();
+        //  List<String> list = new LinkedList<>();
         System.out.println("--------------");
         Set<Integer> numbers = new HashSet<>();
         numbers.add(1);
-        numbers.add(10);
+        numbers.add(1);
         numbers.add(3);
         numbers.add(2);
         for (Integer number : numbers) {
@@ -200,7 +200,79 @@ public class Main {
         }
 
         System.out.println("--------------");
+        //lista simplu inlantuita
 
+        LinkedList lista = new LinkedList();
+        Node node = new Node();
+        node.setValue(1);
+        node.setNext(null);
+        lista.add(node);
+
+        Node node2 = new Node();
+        node2.setValue(2);
+        node2.setNext(null);
+        lista.add(node2);
+
+        Node node3 = new Node();
+        node3.setValue(2);
+        node3.setNext(null);
+        lista.add(node3);
+
+        lista.printList();
+        System.out.println("--------------");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("Cernescu", "Stefan");
+        map.put("Ene", "Alex");
+        map.put("Sorin", "Costiuc");
+
+        System.out.println(map.get("Ene"));
+        System.out.println("--------------");
+
+        Map<String, CarEnum> cars = new HashMap<>();
+        cars.put("SBC", new CarEnum(Model.VOLKSVAGEN, 2008, "Blue"));
+        cars.put("ABC", new CarEnum(Model.AUDI, 2017, "Black"));
+        cars.put("AAA", new CarEnum(Model.RENAULT, 2010, "White"));
+
+        System.out.println(cars.get("SBC"));
+        System.out.println("--------------");
+        Map<Person, CarEnum> newCars = new HashMap<>();
+        Person stefan = new Person("Cernescu", "Stefan");
+        Person alex = new Person("Ene", "Alex");
+        Person sorin = new Person("Sorin", "Costiuc");
+        newCars.put(stefan, new CarEnum(Model.VOLKSVAGEN, 2021, "Blue"));
+        newCars.put(alex, new CarEnum(Model.AUDI, 2022, "Black"));
+        newCars.put(sorin, new CarEnum(Model.VOLVO, 2022, "Black"));
+        System.out.println(newCars.get(stefan));
+
+        System.out.println("--------------");
+        List<Integer> listOne = Arrays.asList(1, 3, 2, 4, 5, 6, 72, 1, 23);
+        Integer sum = 5;
+
+        Map<Integer, Integer> sumOfTwoNumbers = new HashMap<>();
+        for (Integer number : listOne) {
+            if (sumOfTwoNumbers.get(number) != null) {
+                System.out.println("Key:" + number + "\n" + "Value:" + sumOfTwoNumbers.get(number));
+            } else {
+                sumOfTwoNumbers.put(sum - number, number);
+            }
+        }
+        System.out.println("--------------");
+        Student George = new Student("George", "Coconel", "1234567895");
+        Student Marcel = new Student("Marcel", "Marius", "12353235");
+        Catalog studentGrades = new Catalog();
+        studentGrades.addGrade(George, new Grade(10, Course.MATHEMATICS));
+        studentGrades.addGrade(George, new Grade(7, Course.PHYSICS));
+        studentGrades.addGrade(George, new Grade(7, Course.MATHEMATICS));
+        studentGrades.addGrade(George, new Grade(9, Course.COMPUTER_SCIENCE));
+        studentGrades.addGrade(Marcel, new Grade(9, Course.MATHEMATICS));
+        studentGrades.addGrade(Marcel, new Grade(10, Course.PHYSICS));
+        studentGrades.addGrade(Marcel, new Grade(10, Course.COMPUTER_SCIENCE));
+        studentGrades.addGrade(Marcel, new Grade(9, Course.COMPUTER_SCIENCE));
+
+        studentGrades.printGrades(George);
+        //  studentGrades.printGrades(Marcel);
+        studentGrades.printAverage(George);
     }
 }
 
