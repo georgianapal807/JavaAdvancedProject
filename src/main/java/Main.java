@@ -1,5 +1,6 @@
 import Animal.Cat;
 import Animal.Dog;
+import Generice.Glass;
 import Movies.Studio;
 import Recap.Food;
 import Recap.Pizza;
@@ -8,6 +9,7 @@ import examples.Car;
 import examples.Truck;
 import examples.Vehicle;
 
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -260,6 +262,7 @@ public class Main {
         System.out.println("--------------");
         Student George = new Student("George", "Coconel", "1234567895");
         Student Marcel = new Student("Marcel", "Marius", "12353235");
+        Student Bula = new Student("Bula", "Bulescu", "12333235");
         Catalog studentGrades = new Catalog();
         studentGrades.addGrade(George, new Grade(10, Course.MATHEMATICS));
         studentGrades.addGrade(George, new Grade(7, Course.PHYSICS));
@@ -273,7 +276,11 @@ public class Main {
         studentGrades.printGrades(George);
         //  studentGrades.printGrades(Marcel);
         studentGrades.printAverage(George);
-
+        try {
+            studentGrades.printAverage(Bula);
+        } catch (StudentNotFoundException e) {
+            System.out.println("Thank you");
+        }
         List<String> personNames = new ArrayList<>();
         personNames.add("Stefan");
         personNames.add("Ioana");
@@ -287,6 +294,23 @@ public class Main {
         }
 
         personNames.forEach(System.out::println);
+
+        System.out.println("---------------------------");
+
+        try {
+            //checked exception - nu se intampla din vina programatorului extinde clasa Exceptions
+            BufferedReader br = new BufferedReader(new FileReader("file.txt"));
+            String line = br.readLine();
+            System.out.println(line);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        int a1 = 5;
+        int a2 = 0;
+        //unchecked exception - se intampla din vina programatorului si se pot preveni folosind codul extinde RuntimeExceptions
+        if (a2 != 0)
+            System.out.println(a1 / a2);
     }
 }
 

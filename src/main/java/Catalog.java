@@ -43,16 +43,21 @@ public class Catalog {
     }
 
     public void printAverage(Student student) {
-        System.out.println("\n" + student);
-        Map<Course, List<Grade>> courseGrades = gradesBook.get(student);
-        for (Course course : courseGrades.keySet()) {
-            List<Grade> grades = courseGrades.get(course);
-            System.out.println(course);
-            int sum = 0;
-            for (int i = 0; i < grades.size(); i++) {
-                sum += grades.get(i).getValue();
+        try {
+            System.out.println("\n" + student);
+            Map<Course, List<Grade>> courseGrades = gradesBook.get(student);
+            for (Course course : courseGrades.keySet()) {
+                List<Grade> grades = courseGrades.get(course);
+                System.out.println(course);
+                int sum = 0;
+                for (int i = 0; i < grades.size(); i++) {
+                    sum += grades.get(i).getValue();
+                }
+                System.out.println("Average is: " + sum / grades.size());
             }
-            System.out.println("Average is: " + sum / grades.size());
+        } catch (RuntimeException e){
+            throw new StudentNotFoundException("Student is not found " + student);
         }
+
     }
 }
