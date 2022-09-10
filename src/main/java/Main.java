@@ -273,6 +273,20 @@ public class Main {
         studentGrades.printGrades(George);
         //  studentGrades.printGrades(Marcel);
         studentGrades.printAverage(George);
+
+        List<String> personNames = new ArrayList<>();
+        personNames.add("Stefan");
+        personNames.add("Ioana");
+
+        for (int i = 0; i < personNames.size(); i++) {
+            System.out.println(personNames.get(i));
+        }
+
+        for (String name : personNames) { //asta e egal cu personNames.get(i)
+            System.out.println(name);
+        }
+
+        personNames.forEach(System.out::println);
     }
 }
 
