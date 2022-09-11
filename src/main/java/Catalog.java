@@ -29,17 +29,27 @@ public class Catalog {
         return this;
     }
 
+    //    public void printGrades(Student student) {
+//        System.out.println("\n" + student);
+//        Map<Course, List<Grade>> studentGrade = gradesBook.get(student);
+//        for (Course course : studentGrade.keySet()) {
+//            List<Grade> grades = studentGrade.get(course);
+//            System.out.println(course);
+//            for (int i = 0; i < grades.size(); i++) {
+//                System.out.print(grades.get(i).getValue() + " ");
+//            }
+//            System.out.println();
+//        }
+//    }
+///////////////////////////ALTERNATIVE WITH LAMBDA///////////////////////////////////
     public void printGrades(Student student) {
         System.out.println("\n" + student);
         Map<Course, List<Grade>> studentGrade = gradesBook.get(student);
-        for (Course course : studentGrade.keySet()) {
-            List<Grade> grades = studentGrade.get(course);
-            System.out.println(course);
-            for (int i = 0; i < grades.size(); i++) {
-                System.out.print(grades.get(i).getValue() + " ");
-            }
-            System.out.println();
-        }
+        studentGrade.keySet().stream()
+                .peek(System.out::println)
+                .map(studentGrade::get)
+                .flatMap(Collection::stream)
+                .forEach(grade -> System.out.println(grade.getValue()));
     }
 
     public void printAverage(Student student) {
@@ -55,7 +65,7 @@ public class Catalog {
                 }
                 System.out.println("Average is: " + sum / grades.size());
             }
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new StudentNotFoundException("Student is not found " + student);
         }
 
